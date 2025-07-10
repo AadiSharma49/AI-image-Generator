@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Image Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ AI Image Generator</h1>
+            <p class="subtitle">Enter a topic and get beautiful images instantly — cars, anime, cities, landscapes, anything!</p>
+        </div>
+
+        <div class="form-container">
+            <form method="POST">
+                <div class="input-group">
+                    <label class="input-label" for="topic">Topic</label>
+                    <input type="text" name="topic" id="topic" placeholder="e.g. Ferrari, Mountain, Anime Girl" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Generate</button>
+                </div>
+            </form>
+        </div>
+
+{% if filenames %}
+<div class="result">
+    <h2>Results for: <em>{{ topic }}</em></h2>
+    <div class="image-grid">
+        {% for file in filenames %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='assets/' + file) }}" alt="Generated Image">
+            <a class="download" href="{{ url_for('download_file', filename=file) }}" download>📥 Download</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+    </div>
+</body>
+</html>
