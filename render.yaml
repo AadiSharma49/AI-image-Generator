@@ -1,0 +1,12 @@
+# render.yaml
+services:
+  - type: web
+    name: insta-story-generator
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn server:app
+    envVars:
+      - key: PEXELS_API_KEY
+        value: PEXELS_API_KEY=sw1QGyMSxEsQEV4XbvBOFgAS9oiy0EPcoAr3GTjfUvEvYPW4y8jZAas0
+  # put real value in Render dashboard
+    staticPublishPath: static
